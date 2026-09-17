@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Resmi Kelas Gratia - Kelas G</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #f59e0b;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --success-color: #10b981;
+            --warning-color: #ef4444;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 3.5rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.9;
+        }
+
+        .ig-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .tugas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .tugas-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tugas-card.done { border-left-color: var(--success-color); background-color: #f0fdf4; }
+        .tugas-card.pending { border-left-color: var(--warning-color); background-color: #fff1f2; }
+
+        .tugas-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .tugas-title { font-size: 1.1rem; font-weight: 700; color: var(--primary-color); }
+        .status-badge { font-size: 0.75rem; padding: 0.25rem 0.6rem; border-radius: 20px; font-weight: bold; }
+        .status-badge.done { background-color: #d1fae5; color: #065f46; }
+        .status-badge.pending { background-color: #ffe4e6; color: #9f1239; }
+        .tugas-desc { font-size: 0.95rem; color: var(--text-dark); margin-bottom: 1rem; }
+        .tugas-deadline { font-size: 0.85rem; font-weight: 600; color: var(--text-light); background: rgba(0,0,0,0.03); padding: 0.4rem 0.8rem; border-radius: 6px; }
+
+        .table-responsive {
+            overflow-x: auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            margin-bottom: 3.5rem;
+        }
+
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 1rem 1.2rem; border-bottom: 1px solid #e2e8f0; }
+        th { background-color: var(--primary-color); color: white; font-weight: 600; }
+        .badge-day { background-color: #e0e7ff; color: var(--primary-color); padding: 0.3rem 0.6rem; border-radius: 6px; font-size: 0.85rem; font-weight: 700; }
+        .room-badge { background-color: #fef3c7; color: #92400e; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.85rem; font-weight: 600; }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        footer a { color: var(--accent-color); text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+           <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+    <img src="logokelas.png" alt="Logo Gratia" style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%;">
+    <span>Kelas <span>Gratia (Kelas G)</span></span>
+</div>
+
+
+    
+            <ul class="nav-links">
+                <li><a href="#tugas">List Tugas</a></li>
+                <li><a href="#matakuliah">Jadwal Matkul</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Portal Informasi Kelas Gratia </h1>
+        <p>Pusat update daftar tugas, deadline, dan jadwal perkuliahan harian untuk mahasiswa Kelas G.</p>
+        <a href="https://instagram.com/kelas_gratia" target="_blank" class="ig-btn">
+            📷 Follow Instagram @gratia.25
+        <!        <a href="https://instagram.com/kelas_gratia" target="_blank" class="ig-btn">
+           
+        </a>
+    </section>
+
+    <div class="container">
+
+        <!-- BAGIAN GALERI FOTO KELAS -->
+        <section id="galeri" style="margin-bottom: 2.5rem;">
+            <h2 class="section-title">Dokumentasi Kelas Gratia</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                
+                <!-- Foto Formal -->
+                <div style="background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); text-align: center;">
+                    <img src="foto1.JPG" alt="Foto Angkatan Kelas G" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                    <p style="font-weight: bold; margin-top: 0.8rem; color: #1e3a8a;">Foto Angkatan Kelas G</p>
+                    <p style="font-size: 0.85rem; color: #64748b;">Pose Formal Almamater</p>
+                </div>
+
+                <!-- Foto Pose Love -->
+                <div style="background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); text-align: center;">
+                    <img src="foto2.JPG" alt="Kebersamaan Kelas G" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                    <p style="font-weight: bold; margin-top: 0.8rem; color: #1e3a8a;">Kebersamaan Kelas G</p>
+                    <p style="font-size: 0.85rem; color: #64748b;">Pose Hand Sign Love</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- DAFTAR TUGAS KELAS -->
+
+
+    </div>
+</section>
+
+    </section>
+
+    <div class="container">
+        <!-- DAFTAR TUGAS KELAS -->
+        <section id="tugas">
+            <h2 class="section-title">List Tugas Kelas Gratia</h2>
+            <div class="tugas-grid">
+
+                <div class="tugas-card done">
+                    <div>
+                        <div class="tugas-header">
+                            <div class="tugas-title">1. Hukum Adat</div>
+                            <span class="status-badge done">Selesai ✅</span>
+                        </div>
+                        <div class="tugas-desc">Mencari Materi.</div>
+                    </div>
+                    <div class="tugas-deadline">📌 Kumpul: Senin (Kirim sama keting Jam 10.00)✅</div>
+                </div>
+
+                <div class="tugas-card done">
+                    <div>
+                        <div class="tugas-header">
+                            <div class="tugas-title">2. Hukum Agraria</div>
+                            <span class="status-badge done">Selesai ✅</span>
+                        </div>
+                        <div class="tugas-desc">Mencari Materi.</div>
+                    </div>
+                    <div class="tugas-deadline">📌 Kumpul: Selasa</div>
+                </div>
+
+                <div class="tugas-card done">
+                    <div>
+                        <div class="tugas-header">
+                            <div class="tugas-title">3. Hukum Lingkungan</div>
+                            <span class="status-badge done">Selesai ✅</span>
+                        </div>
+                        <div class="tugas-desc">Membuat Essay.</div>
+                    </div>
+                    <div class="tugas-deadline">📌 Kumpul: Kamis, 10 September 2026</div>
+                </div>
+
+                <div class="tugas-card done">
+                    <div>
+                        <div class="tugas-header">
+                            <div class="tugas-title">4. Ilmu Perundang-Undangan</div>
+                            <span class="status-badge done">Selesai ✅</span>
+                        </div>
+                        <div class="tugas-desc">Membuat Peta Konsep.</div>
+                    </div>
+                    <div class="tugas-deadline">📌 Kumpul: Kamis, 10 September 2026</div>
+                </div>
+
+                <div class="tugas-card done">
+                    <div>
+                        <div class="tugas-header">
+                            <div class="tugas-title">5. Hukum Adat</div>
+                            <span class="status-badge done">Selesai ✅</span>
+                        </div>
+                        <div class="tugas-desc">Mencari 1 adat/tradisi, kaitan dengan hukum, perkembangan sebelum & sesudah, sifat, asal-usul nama, tujuan/makna, serta seluk-beluknya (Pemateri harus aktif & paham).</div>
+                    </div>
+                    <div class="tugas-deadline">📌 Kumpul: Senin, 14 September 2026</div>
+                </div>
+
+                <div class="tugas-card done">
+                    <div>
+                        <div class="tugas-header">
+                            <div class="tugas-title">6. Hukum Agraria</div>
+                            <span class="status-badge done">Selesai ✅</span>
+                        </div>
+                        <div class="tugas-desc">Mencari satu contoh kasus yang berkaitan dengan hukum agraria.</div>
+                    </div>
+                    <div class="tugas-deadline">📌 Kumpul: Selasa, 15 September 2026</div>
+                </div>
+
+                <div class="tugas-card pending">
+                    <div>
+                        <div class="tugas-header">
+                            <div class="tugas-title">7. Literasi Digital</div>
+                            <span class="status-badge pending">Proses ⏳</span>
+                        </div>
+                        <div class="tugas-desc">Bikin karya (terserah apa saja) dari AI.</div>
+                    </div>
+                    <div class="tugas-deadline">📌 Kumpul: Jumat, 18 September 2026</div>
+                </div>
+
+                <div class="tugas-card pending">
+                    <div>
+                        <div class="tugas-header">
+                            <div class="tugas-title">8. Technopreneurship</div>
+                            <span class="status-badge pending">Proses ⏳</span>
+                        </div>
+                        <div class="tugas-desc">Mengerjakan tugas yang ada di file PDF.</div>
+                    </div>
+                    <div class="tugas-deadline">📌 Kumpul: Minggu Depan</div>
+                </div>
+
+                <div class="tugas-card pending">
+                    <div>
+                        <div class="tugas-header">
+                            <div class="tugas-title">9. Delik-Delik Dalam KUHP</div>
+                            <span class="status-badge pending">Proses ⏳</span>
+                        </div>
+                        <div class="tugas-desc">Membuat mind map / peta konsep terkait dengan sistematika KUHP nasional dan perbedaan pendekatan.</div>
+                    </div>
+                    <div class="tugas-deadline">📌 Kumpul: Selasa, 22 September 2026</div>
+                </div>
+
+                <div class="tugas-card pending">
+                    <div>
+                        <div class="tugas-header">
+                            <div class="tugas-title">10. Hukum Adat</div>
+                            <span class="status-badge pending">Mendatang ⏳</span>
+                        </div>
+                        <div class="tugas-desc">Kelompok Presentasi.</div>
+                    </div>
+                    <div class="tugas-deadline">📌 Pertemuan 10</div>
+                </div>
+
+                <div class="tugas-card pending">
+                    <div>
+                        <div class="tugas-header">
+                            <div class="tugas-title">11. Hukum Agraria</div>
+                            <span class="status-badge pending">Mendatang ⏳</span>
+                        </div>
+                        <div class="tugas-desc">Kelompok Presentasi.</div>
+                    </div>
+                    <div class="tugas-deadline">📌 Pertemuan 10</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- JADWAL MATA KULIAH KELAS G -->
+        <section id="matakuliah">
+            <h2 class="section-title">Jadwal Mata Kuliah Kelas G</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Jam</th>
+                            <th>Mata Kuliah</th>
+                            <th>SKS</th>
+                            <th>Ruangan</th>
+                            <th>Dosen Pengampu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge-day">Senin</span></td>
+                            <td>07.30 - 10.00</td>
+                            <td><strong>Hukum Adat</strong></td>
+                            <td>3 SKS</td>
+                            <td><span class="room-badge">Pancasila A.2.1</span></td>
+                            <td>Ibu Sri Nanang Meiske Kamba S.H.,M.H</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-day">Senin</span></td>
+                            <td>13.00 - 15.00</td>
+                            <td><strong>Hukum Perjanjian Internasional</strong></td>
+                            <td>3 SKS</td>
+                            <td><span class="room-badge">Yustisia C.2.1</span></td>
+                            <td>Ibu Waode Mustika S.H.,M.H</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-day">Selasa</span></td>
+                            <td>13.00 - 15.30</td>
+                            <td><strong>Hukum Agraria</strong></td>
+                            <td>3 SKS</td>
+                            <td><span class="room-badge">Konstitusi B.2.3</span></td>
+                            <td>Ibu Sri Nanang Meiske Kamba S.H.,M.H</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-day">Selasa</span></td>
+                            <td>15.30 - 17.10</td>
+                            <td><strong>Delik Delik Dalam KUHP</strong></td>
+                            <td>2 SKS</td>
+                            <td><span class="room-badge">Pancasila A.2.5</span></td>
+                            <td>Ibu Karlin Z. Mamu S.H.,M.H</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-day">Rabu</span></td>
+                            <td>07.30 - 09.10</td>
+                            <td><strong>Technopreneurship</strong></td>
+                            <td>2 SKS</td>
+                            <td><span class="room-badge">Pancasila A.2.8</span></td>
+                            <td>Ibu Nur Insani Aulia, S.H., M.Kn</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-day">Kamis</span></td>
+                            <td>09.10 - 11.40</td>
+                            <td><strong>Hukum Lingkungan</strong></td>
+                            <td>3 SKS</td>
+                            <td><span class="room-badge">Konstitusi Aula Usman</span></td>
+                            <td>Pak Kurniawan Kadir, S.H.,M.H</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-day">Kamis</span></td>
+                            <td>13.00 - 15.30</td>
+                            <td><strong>Ilmu Perundang-Undangan</strong></td>
+                            <td>3 SKS</td>
+                            <td><span class="room-badge">Pancasila A.2.7</span></td>
+                            <td>Pak Muhamad Khairun Kurniawan Kadir, S.H.,M.H</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-day">Jumat</span></td>
+                            <td>09.00 - 10.30</td>
+                            <td><strong>Literasi Digital</strong></td>
+                            <td>2 SKS</td>
+                            <td><span class="room-badge">Konstitusi B.2.2</span></td>
+                            <td>Pak Nurul Fazri Elfikri S.H.,M.H</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-day">Jumat</span></td>
+                            <td>14.00 - 17.00</td>
+                            <td><strong>Hukum Perikatan</strong></td>
+                            <td>3 SKS</td>
+                            <td><span class="room-badge">Konstitusi B.1.4</span></td>
+                            <td>Pak Dr. Dindin Syarief Nurwahyudin, S.T., S.H., M.En., M.Kn.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Kelas Gratia - Kelas G. All Rights Reserved.</p>
+        <p>Follow Instagram Kami: <a href="https://instagram.com/kelas_gratia" target="_blank">@gratia.25</a></p>
+    </footer>
+
+</body>
+</html>
